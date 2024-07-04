@@ -4,8 +4,9 @@ import { useCart } from "../../hooks/useCart"
 import { CartItem } from "../CartItem/CartItem"
 
 export function Cart () {
-const { cart, removeCart } = useCart()
+  const { cart, removeCart } = useCart()
   const idCart = useId()
+
   return (
     <>
     <label className="cart-button" htmlFor={idCart}>

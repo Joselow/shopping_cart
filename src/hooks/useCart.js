@@ -9,11 +9,11 @@ export function useCart () {
   }
   
   const { cart, addToCart, removeCart, removefromCart, decreaseQuantityFromCart } = cardContext
-
-  const checkProductInCart = (id) => {  // con memo 100%
+    
+  const checkProductInCart = (id) => {  // usarlo con memo o con usecallback ?? usar eso o no? jjsjs
     return cart.some(product => product.id === id)
   }
 
   return { cart, 
-    addToCart, removeCart, removefromCart, checkProductInCart, decreaseQuantityFromCart }
+    addToCart, removeCart, removefromCart, checkProductInCart , decreaseQuantityFromCart,  }
 }

@@ -1,51 +1,51 @@
-import './Product.css'
-import { useCart } from '../../hooks/useCart'
+import "./Product.css";
 
-function EmptyProducts () {
-  return <span> There are no products with these characteristics</span>
+import { useCart } from "../../hooks/useCart";
+
+function EmptyProducts() {
+  return <span> There are no products with these characteristics</span>;
 }
 
-function ProductList ({ products }) {
-  const { addToCart, cart, removefromCart , checkProductInCart} = useCart()
+function ProductList({ products }) {
+  const { addToCart, removefromCart, checkProductInCart } = useCart();
   return (
-    <main className='products'>            
-          <ul>
-            { 
-            products.map((product, index) => (
-              <li key={product.id}>
-                <img src={product.thumbnail} alt={product.title} />
-                <div>
-                  <strong>{product.title} - $ {product.price}</strong>
-                </div>
-                <div>
+    <main className="products">
+      <ul>
+        {products.map((product) => (
+          <li key={product.id}>
+            <img src={product.thumbnail} alt={product.title} />
+            <div>
+              <strong>
+                {product.title} - $ {product.price}
+              </strong>
+            </div>
+            <div>
+              <button onClick={() => addToCart(product)}>
+                <i className="gg-shopping-cart"></i>
+              </button>
+              {checkProductInCart(product.id) && (
+                <small>
                   <button
-                    onClick={()=>addToCart(product)}
+                    style={{ background: "red" }}
+                    onClick={() => removefromCart(product)}
                   >
-                    <i className="gg-shopping-cart"></i> 
+                    X
                   </button>
-                  { checkProductInCart(product.id) && 
-                    <small>
-                      <button 
-                        style={{background: 'red'}}
-                        onClick={() => removefromCart(product)}
-                        >X</button>
-                    </small>
-                  }
-                </div>
-
-              </li>
-            )) 
-            }        
-          </ul>
-      </main>
-  )
+                </small>
+              )}
+            </div>
+          </li>
+        ))}
+      </ul>
+    </main>
+  );
 }
 
-export function Product ({products}) {
-  const productExists  = products.length
-  return (    
-    productExists 
-      ? <ProductList products={products}></ProductList> 
-      : <EmptyProducts></EmptyProducts>
-  )
+export function Product({ products }) {
+  const productExists = products.length;
+  return productExists ? (
+    <ProductList products={products}></ProductList>
+  ) : (
+    <EmptyProducts></EmptyProducts>
+  );
 }

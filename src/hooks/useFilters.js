@@ -5,10 +5,10 @@ export function useFilters () {
   const filterContext = useContext(FiltersContext)
 
   if (filterContext === undefined) {
-    throw new Error('use this context inside the CardProvider');
+    throw new Error('use this context inside the FilterProvider');
   }
 
-  const {filters, setFilter} = filterContext
+  const { filters, setFilter } = filterContext
 
   const resetFilters = () => {    
     setFilter({
@@ -28,13 +28,16 @@ export function useFilters () {
   }
 
   const filterProducts = ({ products }) => { 
-    return products
-      .filter(product => {
+    return products.filter((product) => {
         const { minPrice, category } = filters;
-        return product.price >= minPrice && (category === 'all' || product.category === category);
+
+        const isAtMinPriceLimit = product.price >= minPrice
+        const herCategoryIsAll = category === 'all'
+        const isTheCategorySearched = product.category === category
+
+        return isAtMinPriceLimit && (herCategoryIsAll || isTheCategorySearched);
       })
   }
-
   
-    return { filterProducts, filters, setFilter, resetFilters, changeFilters }
+  return { filterProducts, filters, setFilter, resetFilters, changeFilters }
 }

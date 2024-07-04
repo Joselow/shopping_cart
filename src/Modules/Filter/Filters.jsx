@@ -9,8 +9,7 @@ export function Filters () {
 
   const handleChangePrice = (e) => {
     const price = e.target.value
-    
-    changeFilters({minPrice: price });    
+    changeFilters({ minPrice: price });    
   }
 
   const handleChangeCategory = (e) => {

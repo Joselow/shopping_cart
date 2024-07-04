@@ -41,7 +41,7 @@ const substractQuantity = (state, payload) => {
   }
 }
 
-const cleanCart = (_state) => {
+const cleanCart = () => {
   return []
 }
 

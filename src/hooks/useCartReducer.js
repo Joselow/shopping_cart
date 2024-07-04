@@ -8,7 +8,8 @@ export function useCartReducer () {
     addToCart: (product) => dispath(Actions.addToCart(product)), 
     removefromCart: (product) => dispath(Actions.removeFromCart(product)), 
     substractQuantity: (product) => dispath(Actions.substractQuantity(product)), 
-    cleanCart: (product) => dispath(Actions.cleanCart(product)), 
+    cleanCart: () => dispath(Actions.cleanCart()), 
+    // cleanCart: dispath(Actions.cleanCart()),  // -- aqui estamos ejecutando la funcion dispatch cosa que no queremos.
   }
 
   return {
